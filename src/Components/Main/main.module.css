@@ -46,9 +46,10 @@
   display: inline-block;
   font-size: 32px;
   cursor: pointer;
+  transition: color 0.4s ease;
 }
 .LoginButton:hover {
-  color: rgb(0, 0, 0);
+  color: black;
 }
 
 .RegisterButton {
@@ -61,6 +62,7 @@
   display: inline-block;
   font-size: 32px;
   cursor: pointer;
+  transition: color 0.4s ease;
 }
 .RegisterButton:hover {
   color: black;
