@@ -1,0 +1,67 @@
+.Body {
+  height: 100vh;
+  width: 100vw;
+  color: rgb(255, 255, 255);
+  font-weight: 100;
+  font-variant: small-caps;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 38px;
+  background-image: url(../../Pictures/124715-1920x1200-desktop-hd-spain-background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.MyHomeMarbella {
+  margin-top: -40px;
+  font-weight: 100;
+
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+.lineBreak {
+  margin-top: -20px;
+  border-top: 1px solid white;
+  width: 50%;
+}
+
+.ButtonContainer {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 40px;
+}
+.LoginButton {
+  margin-right: 5px;
+  padding: 5px;
+  background-color: none;
+  color: white;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  cursor: pointer;
+}
+.LoginButton:hover {
+  color: rgb(0, 0, 0);
+}
+
+.RegisterButton {
+  padding: 10px;
+  background-color: none;
+  color: white;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  cursor: pointer;
+}
+.RegisterButton:hover {
+  color: black;
+}

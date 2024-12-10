@@ -1,0 +1,33 @@
+/* //NAAAAAAAAVBAR */
+
+.Navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #ffffff00;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  align-items: center;
+  height: 10vh;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 24px;
+  font-weight: 100;
+}
+
+.lineBreakVertical {
+  border-left: 1px solid #ffffff;
+  height: 50%;
+}
+.NavbarLink {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+
+  color: #333;
+  text-decoration: none;
+  color: aliceblue;
+  font-weight: 100;
+}
