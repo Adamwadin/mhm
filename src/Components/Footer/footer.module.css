@@ -1,0 +1,130 @@
+.footer {
+  background-color: #fff;
+  color: #333;
+  padding: 50px 20px;
+  font-family: "Arial", sans-serif;
+  text-align: center;
+
+  background-color: #00000000;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.765),
+    rgba(160, 112, 40, 0.77)
+  );
+  backdrop-filter: blur(5px);
+  box-shadow: #050505 0px 0px 15px;
+}
+
+.footerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.companyInfo,
+.contactInfo {
+  flex: 1;
+  min-width: 280px;
+  margin: 0 20px;
+}
+
+.companyInfo p,
+.contactInfo p {
+  font-size: 18px;
+  margin: 8px 0;
+  color: #c5c5c5;
+}
+
+.address {
+  font-size: 20px;
+  color: #333;
+  font-weight: 600;
+}
+
+.contactInfo a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s, font-weight 0.3s;
+}
+
+.contactInfo a:hover {
+  color: #555;
+  font-weight: 700;
+}
+
+.footerNavContainer {
+  margin-top: 40px;
+}
+
+.footerNav {
+  margin-top: 20px;
+}
+
+.footerLink {
+  margin: 0 20px;
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.footerLink:hover {
+  color: #555;
+  transform: scale(1.05);
+}
+
+.socialLinks {
+  margin-top: 30px;
+}
+
+.socialIcon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: 0 20px;
+  background-color: #f0f0f0;
+  color: #333;
+  font-size: 20px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.socialIcon:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .footerTop {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footerNav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footerLink {
+    margin: 10px 0;
+  }
+
+  .socialLinks {
+    margin-top: 20px;
+    text-align: center;
+  }
+}
