@@ -2,11 +2,14 @@ const express = require("express");
 const mysql = require("mysql2");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const stripe = require("stripe")(
+  "sk_test_51QdysO08pnSrIpHIzqtEaQi37MgSEraX5stEJLsOTQZmixBm9G1LymDFIhgEA3CWBp5JE5QLiSgwJ4fnPTdrL5SH00iOI6o8Mn"
+);
 
 const app = express();
 const PORT = 5000;
 
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000" }));
 app.use(bodyParser.json());
 
 const db = mysql.createConnection({
@@ -64,6 +67,28 @@ app.delete("/bookings/:id", (req, res) => {
     }
     res.status(200).send("Booking deleted successfully");
   });
+});
+
+app.post("/create-payment-intent", async (req, res) => {
+  const { amount, customerEmail, customerName, customerAddress, items } =
+    req.body;
+
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount,
+      currency: "usd",
+      receipt_email: customerEmail,
+      shipping: {
+        name: customerName,
+        address: { line1: customerAddress },
+      },
+    });
+
+    res.json({ clientSecret: paymentIntent.client_secret });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error creating payment intent.");
+  }
 });
 
 app.listen(PORT, () => {

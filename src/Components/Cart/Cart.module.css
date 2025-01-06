@@ -1,0 +1,144 @@
+.cart {
+  padding: 25px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #00000000;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.5),
+    rgba(160, 112, 40, 0.5)
+  );
+  backdrop-filter: blur(5px);
+  box-shadow: #050505 0px 0px 15px;
+  font-family: "Arial", sans-serif;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 570px;
+}
+
+.cart h3 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.cart p {
+  font-size: 18px;
+  color: #e1e0e0;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.cart ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.cart li {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+}
+
+.cart li:hover {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart li strong {
+  color: #474748;
+  font-size: 18px;
+}
+
+.cart div {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.cart div span {
+  display: block;
+  margin: 5px 0;
+  font-size: 16px;
+  color: #666;
+}
+
+.removeButton {
+  display: block;
+  margin: 0 auto;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  background-color: #adacac;
+  color: white;
+}
+
+.removeButton:hover {
+  background-color: #323232;
+}
+
+.removeButton:active {
+  background-color: #c62828;
+}
+.checkoutButton {
+  display: block;
+  margin: 30px auto;
+  padding: 16px 30px;
+  background-color: #00000000;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.5),
+    rgba(160, 112, 40, 0.5)
+  );
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.checkoutButton:hover {
+  background-color: #f6ae05;
+  transform: scale(1.05);
+}
+
+.checkoutButton:active {
+  background-color: #2e7d32;
+  transform: scale(1);
+}
+
+.checkoutButton:disabled {
+  background-color: #888888;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+.totalAmount {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 20px;
+  text-decoration: underline;
+
+  border-radius: 10px;
+  background-color: #ffffff00;
+}

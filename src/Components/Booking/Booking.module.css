@@ -1,12 +1,26 @@
-.calendarContainer {
-  margin: 50px auto;
-  width: 90%;
-  max-width: 1200px;
-  border: 2px solid #f5dc38;
-  border-radius: 10px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.bookingAndCartWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 80vh;
+  background-color: #f9f9f9;
+  background-image: url(../../Pictures/sunset-city-fair-of-malaga-andalusia-spain-zakat-gorodskaia.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   padding: 20px;
+  box-sizing: border-box;
+}
+
+.calendarContainer {
+  margin: 20px;
+  padding: 20px;
+  width: 80%;
+  max-width: 1400px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  background-color: #f4f0f0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .calendarHeader {
@@ -18,6 +32,7 @@
 
 .calendar {
   height: 500px;
+  width: 100%;
 }
 
 .event {
@@ -27,29 +42,6 @@
   border-radius: 4px;
   text-align: center;
   font-size: 0.9rem;
-}
-
-.calendarContainer {
-  margin: 20px auto;
-  padding: 10px;
-  max-width: 1200px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.calendarHeader {
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.calendar {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-family: Arial, sans-serif;
 }
 
 .rbc-toolbar {
@@ -81,16 +73,11 @@
 }
 
 .rbc-day-bg {
-  background-color: #fff;
+  background-color: #ffffff50;
 }
 
 .rbc-day-bg:hover {
   background-color: #f0f0f0;
-}
-
-.bookedDay {
-  background-color: #f2626c;
-  color: #fff;
 }
 
 .rbc-event {
@@ -107,4 +94,64 @@
 .rbc-today {
   background-color: #e8f7ff;
   border: 1px solid #d6eaff;
+}
+
+.cartContainer {
+  width: 45%;
+  max-width: 400px;
+
+  margin-top: 20px;
+
+  border: 1px solid #000000;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cartHeader {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.cartItem {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.cartItem:last-child {
+  border-bottom: none;
+}
+
+.cartItemName {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.cartItemPrice {
+  color: #f6a022;
+  font-size: 1rem;
+}
+
+.loginPrompt {
+  text-align: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  font-size: 18px;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .calendarMain {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .calendarContainer,
+  .cartContainer {
+    width: 100%;
+    max-width: none;
+    margin: 10px 0;
+  }
 }
