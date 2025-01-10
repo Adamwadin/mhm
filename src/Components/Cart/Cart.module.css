@@ -1,14 +1,14 @@
+.cartContainer {
+  margin-right: 20px;
+}
 .cart {
   padding: 25px;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  background-color: #00000000;
-  background-image: linear-gradient(
-    rgba(0, 0, 0, 0.5),
-    rgba(160, 112, 40, 0.5)
-  );
+  border: 1px solid #000000;
+  border-radius: 9px;
+  background-color: #f4f0f0;
+
   backdrop-filter: blur(5px);
-  box-shadow: #050505 0px 0px 15px;
+
   font-family: "Arial", sans-serif;
   max-width: 600px;
   display: flex;
@@ -30,7 +30,7 @@
 
 .cart p {
   font-size: 18px;
-  color: #e1e0e0;
+  color: #2e2e2e;
   text-align: center;
   margin: 20px 0;
 }
@@ -100,11 +100,8 @@
   display: block;
   margin: 30px auto;
   padding: 16px 30px;
-  background-color: #00000000;
-  background-image: linear-gradient(
-    rgba(0, 0, 0, 0.5),
-    rgba(160, 112, 40, 0.5)
-  );
+  background-color: #1b1b1b;
+
   color: white;
   border: none;
   border-radius: 10px;
@@ -117,7 +114,7 @@
 }
 
 .checkoutButton:hover {
-  background-color: #f6ae05;
+  background-color: #000000;
   transform: scale(1.05);
 }
 
@@ -134,7 +131,7 @@
 .totalAmount {
   font-size: 22px;
   font-weight: bold;
-  color: #ffffff;
+  color: #000000;
   text-align: center;
   margin-top: 20px;
   text-decoration: underline;

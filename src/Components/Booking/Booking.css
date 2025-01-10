@@ -1,0 +1,4 @@
+/* vanlig css styling då det måste av react-big-calendar */
+.rbc-toolbar > :last-child {
+  display: none;
+}

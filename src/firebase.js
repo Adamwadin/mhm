@@ -1,9 +1,14 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCkaCNzZhFb3SCQm0bXBMk6MTPw7fo89rg",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "mhm-examen.firebaseapp.com",
   projectId: "mhm-examen",
   storageBucket: "mhm-examen.firebasestorage.app",

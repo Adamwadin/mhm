@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+MHM /MyHomeMarbella är enkel bokningsida där alla ska kunna snabbt gå in och boka samt betala.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+försökt att göra det så enkelt och användarvänligt som möjligt i mån av kunskap
 
-## Available Scripts
+Min tanke är att allt ska kunna göras på en sida och INTE gå till massa andra sidor för att snabba upp sjäklvaste upplevelsen.
 
-In the project directory, you can run:
+inga sido-omladdningar, inte egentliga routes. utan allt finns på en sida.
 
-### `npm start`
+frontend är byggd på react/js
+backend express/SQL
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+samt firebase för användare och inlogg. (google inlogg)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+Funktioner
+🗓️ Bokningshantering: Enkel och effektiv bokning.
+💳 Stripe-integration för betalning: Säker betalning med kreditkort.
+🗺️ Google Maps API: Förbättrad användarupplevelse med platstjänster.
+📅 Kalenderfunktionalitet: Hantera datum och tider smidigt.
+⚙️ Backend med Express.js: Snabb och effektiv serverlogik.
+🛢️ MySQL-databas: För säker lagring av data.
+🔐 Säkerhet: Hantering av känsliga uppgifter med miljövariabler (dotenv).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## bibliotek som används:
 
-### `npm run build`
+Frontend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+React: Ramverk för användargränssnitt.
+React Router: Navigering mellan sidor.
+React Modal: Modala fönster.
+React Scroll: Smidig scrollhantering.
+React Datepicker: Datumväljare.
+React Big Calendar & React Calendar: Kalenderfunktionalitet.
+React FontAwesome: Ikoner.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Backend
 
-### `npm run eject`
+Express.js: Serverlogik.
+Stripe: Betalningshantering.
+MySQL2: Databasanrop.
+Body-parser: Hantering av inkommande data.
+Cors: Cross-origin-förfrågningar.
+Övriga teknologier
+Firebase: Autentisering och datahantering.
+Google Maps API: Platstjänster.
+Axios: API-anrop.
+dotenv: Hantering av miljövariabler.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+För att starta så behöver du installera alla dependecies i package.json
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+npm install
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+sedan för att starta frontend.
 
-## Learn More
+npm start
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+öppna ny (en till) terminal för backend och skriv
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+node server.js
 
-### Code Splitting
+projektet är gjort med version 10.1.0 av node (lite äldre variant)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Förutsättningar
+Node.js: 18.18.0 (inte testat med senaste)

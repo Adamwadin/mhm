@@ -8,8 +8,10 @@ import startOfWeek from "date-fns/startOfWeek";
 import getDay from "date-fns/getDay";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import styles from "./Booking.module.css";
-import { useCart } from '../../contexts/CartContext'; 
+import { useCart } from "../../contexts/CartContext";
+import MobileCart from "../Cart/MobileCart";
 import Cart from "../Cart/Cart";
+import "./Booking.css";
 
 const locales = {
   "en-US": require("date-fns/locale/en-US"),
@@ -24,12 +26,31 @@ const localizer = dateFnsLocalizer({
 });
 
 const BookableCalendar = () => {
+  // states för bokningar, laddningsstatus, användarens roll och cart (kundvagn)
   const [bookings, setBookings] = useState([]);
-  const { user, isAuthenticated } = useContext(AuthContext);
+  const { user, isAuthenticated, roles } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
-  const { cart, addToCart, clearCart } = useCart(); 
-  
+  const { cart, addToCart, clearCart } = useCart();
+  const [isMobile, setIsMobile] = useState(false);
 
+  console.log(roles);
+
+  // Kontrollera om fönstret är mobilt och uppdaterar statet `isMobile`
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 769);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Hämta bokningar från API och konvertera tiderna till `Date`-objekt
   useEffect(() => {
     axios
       .get("http://localhost:5000/bookings")
@@ -39,11 +60,9 @@ const BookableCalendar = () => {
             ...booking,
             start: new Date(booking.start_time),
             end: new Date(booking.end_time),
-            
           }))
-          
         );
-        
+
         setLoading(false);
       })
       .catch((error) => {
@@ -55,41 +74,42 @@ const BookableCalendar = () => {
     return <div>Loading...</div>;
   }
 
-
+  // priser baserade på datum, hårdkodade för enkelhetens skull
   const seasonalPrices = [
-    { start: "2025-01-01", end: "2025-05-01", price: 785, color: "#a3c8f5a4" },
-    { start: "2025-11-01", end: "2025-12-31", price: 785, color: "#a3c8f597" }, 
-    { start: "2025-05-01", end: "2025-05-31", price: 928, color: "#a9d3a79e" },
-    { start: "2025-10-01", end: "2025-10-31", price: 928, color: "#f5c49ea7" }, 
-    { start: "2025-06-01", end: "2025-09-30", price: 1071, color: "#f4df8ca1" }, 
+    { start: "2025-01-01", end: "2025-05-01", price: 785, color: "#000000" },
+    { start: "2025-11-01", end: "2025-12-31", price: 785, color: "#000000" },
+    { start: "2025-05-01", end: "2025-05-31", price: 928, color: "#000000" },
+    { start: "2025-10-01", end: "2025-10-31", price: 928, color: "#000000" },
+    { start: "2025-06-01", end: "2025-09-30", price: 1071, color: "#000000" },
   ];
 
+  // hitta pris och färg baserat på datum
   const getSeasonalPrice = (date) => {
     const season = seasonalPrices.find(
       (season) =>
-        new Date(date) >= new Date(season.start) && new Date(date) <= new Date(season.end)
+        new Date(date) >= new Date(season.start) &&
+        new Date(date) <= new Date(season.end)
     );
     return season ? { price: season.price, color: season.color } : null;
   };
 
-  const convertToLocalTime = (utcDate) => {
-    const date = new Date(utcDate);
-    return new Date(date.getTime() - date.getTimezoneOffset() * 60000);
-  };
-
+  // funktion när användaren väljer ett datumintervall
   const handleSelectSlot = ({ start, end }) => {
-    const dayDifference = (new Date(end) - new Date(start)) / (1000 * 60 * 60 * 24);
-  
+    const dayDifference =
+      (new Date(end) - new Date(start)) / (1000 * 60 * 60 * 24);
+
     if (dayDifference < 3) {
-      alert("The minimum rental period is 3 days. Please select a longer duration.");
+      alert(
+        "The minimum rental period is 3 days. Please select a longer duration."
+      );
       return;
     }
-  
+    // Kontrollera om datumintervall överlappar med befintliga bokningar
     const isOverlapping = bookings.some(
       (booking) =>
         start < new Date(booking.end) && end > new Date(booking.start)
     );
-  
+
     if (isOverlapping) {
       alert("This date range is already booked. Please choose another time.");
       return;
@@ -99,48 +119,42 @@ const BookableCalendar = () => {
       const confirmReplace = window.confirm(
         "Your cart already contains a booking. Would you like to replace it?"
       );
-  
+
       if (!confirmReplace) {
         return;
       } else {
-       
         clearCart();
       }
     }
-  
+
     const amount = prompt("Enter amount of people staying:");
     const booked_by = prompt("Enter your name or email:");
     if (amount && booked_by) {
-      const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-  
+      const randomColor = `#f5dc38`;
       const seasonalPrice = getSeasonalPrice(start);
       const price = seasonalPrice ? seasonalPrice.price : 0;
-  
+      // Skapa ny bokning från info frpm användaren
       const newBooking = {
         amount,
         booked_by,
         start_time: new Date(start).toLocaleString(),
         end_time: new Date(end).toLocaleString(),
         color: randomColor,
-        price, 
+        price,
       };
-  
-      axios
-        .post("http://localhost:5000/bookings", newBooking)
-        .then(() => setBookings((prev) => [...prev, { ...newBooking, start, end }]))
-        .catch((error) => console.error("Error adding booking:", error));
-  
-
 
       addToCart([{ start, end, amount, booked_by, price }]);
+
+      setBookings((prev) => [...prev, { ...newBooking, start, end }]);
     }
   };
-  
-
+  // Hantera delete av en bokning
   const handleDeleteBooking = (id) => {
     axios
       .delete(`http://localhost:5000/bookings/${id}`)
-      .then(() => setBookings((prev) => prev.filter((booking) => booking.id !== id)))
+      .then(() =>
+        setBookings((prev) => prev.filter((booking) => booking.id !== id))
+      )
       .catch((error) => console.error("Error deleting booking:", error));
   };
 
@@ -151,14 +165,15 @@ const BookableCalendar = () => {
       style: {
         backgroundColor: seasonalPrice ? seasonalPrice.color : "#8d6cb3",
       },
-      title: `Price: ${seasonalPrice ? seasonalPrice.price : "No seasonal price"}`,
+      title: `Price: ${
+        seasonalPrice ? seasonalPrice.price : "No seasonal price"
+      }`,
     };
   };
 
- 
-
   return (
     <div className={styles.container}>
+      <section id="booking"></section>
       {isAuthenticated ? (
         <div className={styles.bookingAndCartWrapper}>
           <div className={styles.calendarContainer}>
@@ -174,33 +189,37 @@ const BookableCalendar = () => {
                 selectable
                 onSelectSlot={handleSelectSlot}
                 onSelectEvent={(booking) => {
-                  const confirmation = window.confirm(`Do you want to delete this booking for ${booking.amount}?`);
-                  if (confirmation) {
-                    handleDeleteBooking(booking.id);
+                  if (roles.includes("owner")) {
+                    const confirmation = window.confirm(
+                      `Do you want to delete this booking for ${booking.amount}?`
+                    );
+                    if (confirmation) {
+                      handleDeleteBooking(booking.id);
+                    }
                   }
                 }}
-                views={["month", "week", "day", "agenda"]}
                 eventPropGetter={bookingStyleGetter}
                 className={styles.calendar}
-                
-
+                view="month"
                 dayPropGetter={(date) => {
                   const isBooked = bookings.some(
                     (booking) =>
                       date >= new Date(booking.start).setHours(0, 0, 0, 0) &&
                       date <= new Date(booking.end).setHours(0, 0, 0, 0)
                   );
-  
-                  return {
-                    className: `${isBooked ? styles.bookedDay : ""} ${styles.dayCell}`,
-                    style: {},
-                  };
                 }}
               />
             )}
           </div>
-          <div className={styles.cartContainer}>
-            <Cart /> 
+          <div
+            className={`${styles.cartContainer} ${
+              isMobile ? styles.mobileCart : ""
+            }`}
+          >
+            <Cart />
+          </div>
+          <div className={styles.mobileCartContainer}>
+            <MobileCart />
           </div>
         </div>
       ) : (
@@ -210,7 +229,6 @@ const BookableCalendar = () => {
       )}
     </div>
   );
-  
 };
 
 export default BookableCalendar;

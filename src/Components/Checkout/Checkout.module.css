@@ -64,11 +64,8 @@
   cursor: pointer;
 }
 .proceedButton {
-  background-color: #00000000;
-  background-image: linear-gradient(
-    rgba(0, 0, 0, 0.5),
-    rgba(160, 112, 40, 0.5)
-  );
+  background-color: #000000;
+
   color: white;
   border: none;
   padding: 10px;

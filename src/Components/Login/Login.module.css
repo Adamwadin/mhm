@@ -1,0 +1,403 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  width: 100%;
+
+  border-radius: 20px;
+}
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  transform: translateX(20px);
+  min-height: 550px;
+  background: linear-gradient(to right, #14365b, #118aba);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  border-radius: 20px;
+  z-index: 2;
+}
+.signUpText h1,
+.signUpText p {
+  color: #fff;
+}
+
+.loginText h1,
+.loginText p {
+  color: #444;
+}
+
+.signUpText {
+  opacity: 1;
+  transform: translateX(20);
+}
+
+.loginText {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+.leftSide h1 {
+  font-size: 34px;
+  color: white;
+  margin-bottom: 40px;
+  margin-left: 20px;
+}
+.leftSide p {
+  font-size: 20px;
+  color: rgb(15, 15, 15);
+  margin-bottom: 40px;
+  margin-left: 60px;
+  margin-right: 40px;
+  margin-top: 50px;
+}
+
+.rightSide {
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 550px;
+  min-width: 450px;
+  background: linear-gradient(to right, #b2b03a, #0c8084);
+  border-radius: 0 20px 20px 0;
+  transition: opacity 0.6s ease-in, transform 0.6s ease;
+}
+
+.signUpBackground {
+  background: linear-gradient(to right, #d18d21, #cc524f);
+}
+
+.loginBackground {
+  background: linear-gradient(to right, #0c8084, #b2b03a);
+  border-radius: 20px;
+  transform: translateX(-300px);
+  z-index: 2;
+  transition: opacity 0.6s ease-in, transform 0.6s ease;
+}
+
+.lineBreak {
+  margin-top: -20px;
+  border-top: 1px solid white;
+  width: 90%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  border-radius: 8px;
+  width: fit-content;
+  max-width: 70%;
+  text-align: left;
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+  transition: all 0.6s;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputContainer {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 10px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  font-size: 16px;
+  background: none;
+}
+
+.input:focus {
+  border-color: #1c4c9a;
+}
+
+.label {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  font-size: 16px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0);
+  padding: 0 5px;
+  transition: 0.6s ease;
+  pointer-events: none;
+}
+.signUpBackground .label {
+  color: #fff;
+}
+
+.loginBackground .label {
+  color: #fff;
+}
+
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+  top: -8px;
+  font-size: 12px;
+  color: #20179f;
+}
+
+.button {
+  background-color: #0c808400;
+  color: white;
+  padding: 7px 10px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 30px;
+
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.button:hover {
+  color: #000000;
+  transition: color 0.6s;
+}
+
+.mainLoginButton {
+  color: white;
+  padding: 7px 10px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 30px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background-color: #00000000;
+}
+
+.mainLoginButton:hover {
+  color: rgb(0, 0, 0);
+
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #00000000;
+}
+.switchContainer {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.switchText {
+  position: absolute;
+  text-align: center;
+  font-size: 35px;
+  color: #fdfdfd;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.fadeIn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.fadeOut {
+  opacity: 0;
+}
+
+.signUpbutton {
+  background-color: #0c808400;
+  color: white;
+  padding: 7px 10px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color 0.3s;
+  margin: 30px;
+
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.signUpbutton:hover {
+  color: rgb(0, 0, 0);
+
+  cursor: pointer;
+  transition: color 0.3s ease;
+  background-color: #00000000;
+}
+
+.orContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.lineBreak {
+  border-top: 1px solid #ccc;
+  margin: 0 10px;
+}
+
+.or {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.signInbuttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error {
+  color: rgb(0, 0, 0);
+  font-size: 0.9rem;
+}
+@media (max-width: 1200px) {
+  .loginBackground {
+    background: linear-gradient(to right, #0c8084, #b2b03a);
+    border-radius: 20px;
+    transform: translateX(-150px);
+    z-index: 2;
+    transition: opacity 0.6s ease-in, transform 0.6s ease;
+  }
+  .closeButton {
+    top: 10px;
+
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 3;
+    transition: all 0.6s;
+  }
+}
+@media (max-width: 1000px) {
+  .loginBackground {
+    background: linear-gradient(to right, #0c8084, #b2b03a);
+    border-radius: 20px;
+    transform: translateX(-100px);
+    z-index: 2;
+    transition: opacity 0.6s ease-in, transform 0.6s ease;
+  }
+  .closeButton {
+    top: 10px;
+
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 3;
+    transition: all 0.6s;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 100%;
+
+    border-radius: 20px;
+  }
+  .leftSide {
+    display: none;
+  }
+  .signUpText {
+    opacity: 1;
+    max-height: 400px;
+  }
+
+  .rightSide {
+    z-index: 1;
+    display: flex;
+
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 550px;
+    min-width: 450px;
+    background: linear-gradient(to right, #b2b03a, #0c8084);
+    border-radius: 20px;
+    transition: opacity 0.6s ease-in, transform 0.6s ease;
+  }
+
+  .signUpBackground {
+    background: linear-gradient(to right, #d18d21, #cc524f);
+  }
+
+  .loginBackground {
+    background: linear-gradient(to right, #0c8084, #b2b03a);
+    border-radius: 20px;
+    transform: translateX(0px);
+    z-index: 2;
+    transition: opacity 0.6s ease-in, transform 0.6s ease;
+  }
+  .overlay {
+    border-radius: 0;
+  }
+  .closeButton {
+    top: 10px;
+
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 3;
+    transition: all 0.6s;
+  }
+}
+@media (max-width: 415px) {
+  .closeButton {
+    top: 10px;
+    right: -40px;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 3;
+    transition: all 0.6s;
+  }
+}

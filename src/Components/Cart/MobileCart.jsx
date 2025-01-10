@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useCart } from "../../contexts/CartContext";
-import styles from "./Cart.module.css";
+import styles from "./MobileCart.module.css";
 import Checkout from "../Checkout/Checkout";
 import CheckoutForm from "../Checkout/CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
@@ -8,18 +8,21 @@ import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const Cart = () => {
-  // Hämtar kundvagn och funktioner från CartContext
+const MobileCart = () => {
   const { cart, removeFromCart } = useCart();
-
   const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
   const [isCheckoutFormModalOpen, setIsCheckoutFormModalOpen] = useState(false);
   const [cartItems, setCartItems] = useState(cart);
-  // Städavgift som läggs till varje bokning
-  const mandatoryCleaningFee = 850;
-  const [totalAmount, setTotalAmount] = useState(0);
+  const mandatoryCleaningFee = 85;
+  const [totalAmount, setTotalAmount] = useState(
+    cart.reduce((total, item) => {
+      const startDate = new Date(item.start);
+      const endDate = new Date(item.end);
+      const dayDifference = (endDate - startDate) / (1000 * 60 * 60 * 24);
+      return total + dayDifference * item.price + mandatoryCleaningFee;
+    }, 0)
+  );
 
-  // Uppdaterar kundvagnen och beräknar totalbeloppet beorende på antal dagar och städavgift
   useEffect(() => {
     setCartItems(cart);
     setTotalAmount(
@@ -49,7 +52,7 @@ const Cart = () => {
   };
 
   return (
-    <div className={styles.cartContainer}>
+    <div>
       <div className={styles.cart}>
         <h3>Your Booking</h3>
         {cart.length === 0 ? (
@@ -71,7 +74,7 @@ const Cart = () => {
                         <strong>Guest:</strong> {item.booked_by}
                       </span>
                       <span>
-                        <strong>Cleaning fee:</strong> {mandatoryCleaningFee} Kr
+                        <strong>Cleaning fee:</strong> {mandatoryCleaningFee}$
                       </span>
                       <span>
                         <strong>Dates:</strong> {startDate.toLocaleDateString()}{" "}
@@ -90,9 +93,7 @@ const Cart = () => {
             </ul>
           </div>
         )}
-        <h4 className={styles.totalAmount}>
-          Total: Kr {totalAmount.toFixed(2)}
-        </h4>
+        <h4 className={styles.totalAmount}>Total: ${totalAmount.toFixed(2)}</h4>
 
         {cart.length === 0 ? (
           <button className={styles.checkoutButton} disabled>
@@ -127,4 +128,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default MobileCart;

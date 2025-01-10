@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./navbar.module.css";
+import { Link } from "react-scroll";
 
 const Navbar = ({ isAuthenticated, user }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleScroll = () => {
     if (window.scrollY > 50) {
@@ -10,6 +12,10 @@ const Navbar = ({ isAuthenticated, user }) => {
     } else {
       setIsScrolled(false);
     }
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   useEffect(() => {
@@ -23,18 +29,35 @@ const Navbar = ({ isAuthenticated, user }) => {
   return (
     <div className={styles.body}>
       <div className={`${styles.Navbar} ${isScrolled ? styles.shrink : ""}`}>
-        <a href="/" className={styles.NavbarLink}>Booking</a>
-        <div className={styles.lineBreakVertical}></div>
-        <a href="/about" className={styles.NavbarLink}>Info</a>
-        <div className={styles.lineBreakVertical}></div>
-        <a href="/contact" className={styles.NavbarLink}>Pictures</a>
-        <div className={styles.lineBreakVertical}></div>
-        <a href="/contact" className={styles.NavbarLink}>Contact</a>
-        <div className={styles.lineBreakVertical}></div>
-        {isAuthenticated && <p className={styles.greeting}>Welcome {user?.displayName}!</p>}
-       
+        <button
+          className={styles.hamburger}
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          ☰
+        </button>
+        <div className={`${styles.menu} ${isMenuOpen ? styles.show : ""}`}>
+          <Link to="Home" smooth={true} className={styles.NavbarLink}>
+            Home
+          </Link>
+          <Link to="pictures" smooth={true} className={styles.NavbarLink}>
+            Pictures
+          </Link>
+
+          <Link to="info" smooth={true} className={styles.NavbarLink}>
+            Info
+          </Link>
+          <Link to="booking" smooth={true} className={styles.NavbarLink}>
+            Booking
+          </Link>
+          <Link to="contact" smooth={true} className={styles.NavbarLink}>
+            Contact
+          </Link>
+          {isAuthenticated && (
+            <p className={styles.greeting}>Welcome {user?.displayName}!</p>
+          )}
+        </div>
       </div>
-      
     </div>
   );
 };

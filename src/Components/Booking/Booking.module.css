@@ -2,13 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  height: 80vh;
-  background-color: #f9f9f9;
-  background-image: url(../../Pictures/sunset-city-fair-of-malaga-andalusia-spain-zakat-gorodskaia.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  padding: 20px;
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -17,7 +11,6 @@
   padding: 20px;
   width: 80%;
   max-width: 1400px;
-  border: 2px solid #000000;
   border-radius: 10px;
   background-color: #f4f0f0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -35,75 +28,12 @@
   width: 100%;
 }
 
-.event {
-  color: #ffffff;
-  background-color: #2e2e2e86;
-  padding: 5px;
-  border-radius: 4px;
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-.rbc-toolbar {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-  color: #444;
-}
-
-.rbc-toolbar button {
-  background: #f6a022;
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.rbc-toolbar button:hover {
-  background: #d17c1a;
-}
-
-.rbc-header {
-  text-transform: uppercase;
-  background-color: #f5dc38;
-  color: #28401e;
-  font-weight: bold;
-}
-
-.rbc-day-bg {
-  background-color: #ffffff50;
-}
-
-.rbc-day-bg:hover {
-  background-color: #f0f0f0;
-}
-
-.rbc-event {
-  background-color: #8d6cb3;
-  color: white;
-  border-radius: 4px;
-  padding: 2px 5px;
-}
-
-.rbc-event:hover {
-  background-color: #6c4e9a;
-}
-
-.rbc-today {
-  background-color: #e8f7ff;
-  border: 1px solid #d6eaff;
-}
-
 .cartContainer {
   width: 45%;
   max-width: 400px;
 
   margin-top: 20px;
 
-  border: 1px solid #000000;
-  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -141,6 +71,9 @@
   font-size: 18px;
   color: #333;
 }
+.mobileCartContainer {
+  display: none;
+}
 
 @media (max-width: 768px) {
   .calendarMain {
@@ -148,10 +81,49 @@
     align-items: center;
   }
 
-  .calendarContainer,
   .cartContainer {
     width: 100%;
     max-width: none;
     margin: 10px 0;
+  }
+
+  .mobileCart {
+    display: none;
+  }
+  .calendarContainer {
+    margin: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 1400px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background-color: #f4f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .mobileCartContainer {
+    display: block;
+    width: 100%;
+
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .bookingAndCartWrapper {
+    flex-direction: column;
+    height: auto;
+    padding: 0px;
+    width: 100%;
+  }
+}
+@media (max-width: 415px) {
+  .calendarContainer {
+    margin: 7px;
+    padding: 10px;
+    width: 90%;
+    max-width: 1400px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background-color: #f4f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 }

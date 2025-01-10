@@ -1,168 +1,147 @@
-.imageSlider {
-  width: 100%;
-  height: 105vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.imageSliderContainer {
   position: relative;
-  overflow: hidden;
-  background-color: #000;
-  background-size: gray;
-  background-repeat: no-repeat;
-  background-position: center;
-  transition: all 0.3s ease;
+
+  height: 100vh;
 }
-.imageSlider::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
+
+.mainImageWrapper {
+  position: relative;
   width: 100%;
-  height: 100%;
-  z-index: 0;
+  height: auto;
+  margin-bottom: 20px;
 }
-.imageSlider img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+
 .sliderImage {
   width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  font-size: 24px;
-  font-weight: 100;
-  font-family: "Times New Roman", Times, serif;
-  text-align: center;
-
+  height: auto;
   transition: opacity 0.5s ease-in-out;
-}
-.ButtonContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 70px;
-  position: absolute;
-  bottom: -90%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.button {
-  padding: 10px 20px;
-  background-color: #00000000;
-  color: white;
-  border: 1px solid white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 24px;
-  cursor: pointer;
-  transition: color 0.4s ease;
-}
-.button:hover {
-  color: black;
-}
-.prevButton {
-  top: 50%;
-  left: 20px;
-  transform: translateY(-50%);
-  padding: 10px 20px;
-  background-color: #00000000;
-  color: white;
-  border: 1px solid white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 24px;
-  cursor: pointer;
-  transition: color 0.4s ease;
-}
-.prevButton:hover {
-  color: black;
-}
-.nextButton {
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-  padding: 10px 20px;
-  background-color: #00000000;
-  color: white;
-  border: 1px solid white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 24px;
-  cursor: pointer;
-  transition: color 0.4s ease;
-}
-.fadeIn {
-  animation: fadeIn 0.2s ease-in-out;
-  opacity: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 90px;
+  object-fit: cover;
+  height: 100vh;
 }
 
 .fadeOut {
-  animation: fadeOut 0.2s ease-in-out;
-
-  opacity: 1;
-  filter: blur(5px);
-}
-.textOverlay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(rgba(190, 185, 185, 0.5), rgba(75, 45, 45, 0.3));
-
-  border-radius: 20px;
-  width: 40%;
-  height: 40%;
-  position: absolute;
-  left: 80%;
-  transform: translateX(-50%);
-  color: white;
-  font-size: 24px;
-  text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  z-index: 2;
-  opacity: 1;
-  transition: color 0.4s ease;
-}
-.fadeOut + .textOverlay {
   opacity: 0;
 }
-.fadeIn + .textOverlay {
+
+.fadeIn {
   opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  display: none;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.thumbnailSlider {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  bottom: 120px;
+  left: 30%;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
 }
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
+.thumbnail {
+  width: 150px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border-radius: 5px;
+}
+
+.thumbnail:hover {
+  transform: scale(1.1);
+}
+
+.activeThumbnail {
+  border: 1px solid #fff;
+  transform: scale(1.1);
+}
+
+.ButtonContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.prevButton {
+  margin-right: auto;
+}
+
+.nextButton {
+  margin-left: auto;
+}
+
+@media (max-width: 1200px) {
+  .thumbnailSlider {
+    bottom: 100px;
+    left: 20%;
+    padding: 10px;
   }
-  to {
-    opacity: 0;
+
+  .thumbnail {
+    width: 150px;
+  }
+  .fadeIn {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    display: none;
   }
 }
 
 @media (max-width: 768px) {
-  .ButtonContainer {
-    gap: 10px;
+  .thumbnailSlider {
+    bottom: 100px;
+    left: 15%;
+    padding: 10px;
   }
 
-  .button {
-    padding: 8px 16px;
-    font-size: 14px;
+  .thumbnail {
+    width: 100px;
+  }
+  .fadeIn {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .thumbnailSlider {
+    bottom: 100px;
+    left: 7%;
+    padding: 10px;
+  }
+
+  .thumbnail {
+    width: 70px;
+  }
+  .fadeIn {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    display: none;
   }
 }

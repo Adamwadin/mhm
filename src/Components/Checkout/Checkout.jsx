@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Checkout.module.css";
 
-const mandatoryCleaningFee = 85; 
+const mandatoryCleaningFee = 850;
 
 const Checkout = ({ cartItems, totalAmount, onClose, onOpenCheckoutForm }) => {
   return (
@@ -17,8 +17,10 @@ const Checkout = ({ cartItems, totalAmount, onClose, onOpenCheckoutForm }) => {
             {cartItems.map((item, index) => {
               const startDate = new Date(item.start);
               const endDate = new Date(item.end);
-              const dayDifference = (endDate - startDate) / (1000 * 60 * 60 * 24);
-              const itemTotal = dayDifference * item.price + mandatoryCleaningFee; 
+              const dayDifference =
+                (endDate - startDate) / (1000 * 60 * 60 * 24);
+              const itemTotal =
+                dayDifference * item.price + mandatoryCleaningFee;
 
               return (
                 <li key={index}>
@@ -27,16 +29,29 @@ const Checkout = ({ cartItems, totalAmount, onClose, onOpenCheckoutForm }) => {
                     <br />
                     <strong>Guest : {item.booked_by}</strong>
                     <br />
-                    Dates: {startDate.toLocaleDateString()} - {endDate.toLocaleDateString()}
+                    Dates: {startDate.toLocaleDateString()} -{" "}
+                    {endDate.toLocaleDateString()}
                     <br />
-                    Price: ${itemTotal.toFixed(2)} (Includes $85 cleaning fee)
+                    Price: Sek {itemTotal.toFixed(2)} (Includes 850 kr cleaning
+                    fee)
+                    {/* JA denna texten är korrekt då vi har några engelsk talande kunder men vi ger alltid ut priest i kr :) */}
                   </div>
                 </li>
               );
             })}
           </ul>
+          {cartItems.map((item, index) => {
+            const startDate = new Date(item.start);
+            const endDate = new Date(item.end);
+            const dayDifference = (endDate - startDate) / (1000 * 60 * 60 * 24);
+            const itemTotal = dayDifference * item.price + mandatoryCleaningFee;
 
-          <h4>Total: ${totalAmount.toFixed(2)}</h4>
+            return (
+              <div>
+                <strong>Total: {itemTotal.toFixed(2)} Kr</strong>
+              </div>
+            );
+          })}
         </div>
 
         <button className={styles.proceedButton} onClick={onOpenCheckoutForm}>

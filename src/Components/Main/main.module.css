@@ -17,6 +17,9 @@
   align-items: center;
   flex-direction: column;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 .MyHomeMarbella {
   margin-top: -40px;
   font-weight: 100;
@@ -108,4 +111,21 @@
 }
 .logoutButton:hover {
   color: black;
+}
+@media (max-width: 768px) {
+  .ButtonContainer {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .logoutButton {
+    margin-left: 0;
+  }
+  .MyHomeMarbella {
+    font-size: 40px;
+  }
+  .lineBreak {
+    margin-top: 10px;
+    border-top: 1px solid white;
+    width: 50%;
+  }
 }

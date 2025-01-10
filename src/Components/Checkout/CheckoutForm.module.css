@@ -94,7 +94,7 @@
 }
 
 .payButton {
-  background-color: #4caf50;
+  background-color: #000000;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -115,29 +115,30 @@
 }
 
 .successMessage {
-  color: #4caf50;
+  color: #1d1d1d;
   font-size: 1.5em;
   margin-bottom: 20px;
   padding: 15px;
-  background-color: #e8f5e9;
-  border-left: 5px solid #4caf50;
+  background-color: #eaeaea;
+
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   font-weight: bold;
   transition: all 0.3s ease;
+  text-align: center;
 }
 
 .successMessage:hover {
-  background-color: #dcedc8;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
 
 .orderSummary {
   margin-top: 30px;
   padding: 20px;
-  background-color: #fafafa;
+  background-color: #9393935a;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .orderSummary ul {
@@ -149,23 +150,19 @@
 
 .orderSummary li {
   margin-bottom: 15px;
-  padding: 10px;
+  padding: 50px;
   border-bottom: 1px solid #ddd;
   font-size: 1.1em;
-  color: #333;
+  color: #0e0e0e;
   transition: background-color 0.3s ease;
-}
-
-.orderSummary li:hover {
-  background-color: #f1f1f1;
-  cursor: pointer;
+  text-align: start;
 }
 
 .totalAmount {
   margin-top: 20px;
   font-weight: bold;
   font-size: 1.3em;
-  color: #2e7d32;
+  color: #000000;
   padding: 15px;
   background-color: #f1f8e9;
   border-radius: 8px;
@@ -180,16 +177,181 @@
 }
 
 @media (max-width: 768px) {
-  .modalContent {
-    width: 90%;
-    max-width: 500px;
+  .modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
   }
 
-  .payButton {
-    padding: 10px 15px;
+  .modalContent {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .inputWrapper {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .inputField {
+    width: 85%;
+    padding: 12px 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .inputField:focus {
+    border-color: #28401e;
+  }
+
+  .inputLabel {
+    position: absolute;
+    left: 16px;
+    top: 15px;
+    background-color: white;
+    padding: 0 4px;
+    font-size: 16px;
+    color: #444;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+
+  .inputField:focus + .inputLabel,
+  .inputField:not(:placeholder-shown) + .inputLabel {
+    top: 10px;
+    font-size: 12px;
+    color: #28401e;
+    transform: translateY(-100%);
+    font-weight: bold;
+  }
+
+  .inputField:focus {
+    border-color: #28401e;
+  }
+
+  .inputField:focus::placeholder {
+    opacity: 0;
+  }
+
+  .inputField::placeholder {
+    opacity: 1;
   }
 
   .cardElement {
+    width: 86%;
+    grid-column: span 2;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+
+  .payButton {
+    background-color: #000000;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     width: 100%;
+    margin-top: 10px;
+  }
+
+  .payButton:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+
+  .error {
+    color: red;
+    margin-top: 10px;
+  }
+
+  .successMessage {
+    color: #1d1d1d;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #eaeaea;
+
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .successMessage:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .orderSummary {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #9393935a;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .orderSummary ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.1em;
+  }
+
+  .orderSummary li {
+    margin-bottom: 15px;
+    padding: 50px;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.1em;
+    color: #0e0e0e;
+    transition: background-color 0.3s ease;
+    text-align: start;
+  }
+
+  .totalAmount {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #000000;
+    padding: 15px;
+    background-color: #f1f8e9;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .totalAmount:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
   }
 }

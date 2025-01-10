@@ -4,12 +4,7 @@
   padding: 50px 20px;
   font-family: "Arial", sans-serif;
   text-align: center;
-
-  background-color: #00000000;
-  background-image: linear-gradient(
-    rgba(0, 0, 0, 0.765),
-    rgba(160, 112, 40, 0.77)
-  );
+  background-color: #dbdbdb7e;
   backdrop-filter: blur(5px);
   box-shadow: #050505 0px 0px 15px;
 }
@@ -39,7 +34,7 @@
 .contactInfo p {
   font-size: 18px;
   margin: 8px 0;
-  color: #c5c5c5;
+  color: #040404;
 }
 
 .address {
