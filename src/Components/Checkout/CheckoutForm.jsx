@@ -48,7 +48,7 @@ const CheckoutForm = ({ totalAmount, onClose, orderItems }) => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            amount: totalAmount * 100,
+            amount: totalAmount,
             customerEmail: formData.email,
             customerName: `${formData.name} ${formData.surname}`,
             customerAddress: formData.address,
@@ -136,7 +136,8 @@ const CheckoutForm = ({ totalAmount, onClose, orderItems }) => {
                         {endDate.toLocaleDateString()} ({numDays}{" "}
                         {numDays === 1 ? "day" : "days"}) -{" "}
                         <span>
-                          ${itemTotal.toFixed(2)} (Includes 850kr cleaning fee)
+                          <br></br> Kr {itemTotal.toFixed(2)} (Includes 850kr
+                          cleaning fee)
                         </span>
                       </p>
                     </li>
@@ -150,7 +151,7 @@ const CheckoutForm = ({ totalAmount, onClose, orderItems }) => {
                   const numDays = calculateDays(startDate, endDate);
                   const itemTotal = numDays * item.price + mandatoryCleaningFee;
 
-                  return <p>Total: ${itemTotal.toFixed(2)}</p>;
+                  return <p>Total: {itemTotal.toFixed(2)} Kr</p>;
                 })}
               </div>
             </div>

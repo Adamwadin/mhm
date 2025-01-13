@@ -14,13 +14,20 @@ samt firebase för användare och inlogg. (google inlogg)
 ---
 
 Funktioner
-🗓️ Bokningshantering: Enkel och effektiv bokning.
-💳 Stripe-integration för betalning: Säker betalning med kreditkort.
-🗺️ Google Maps API: Förbättrad användarupplevelse med platstjänster.
-📅 Kalenderfunktionalitet: Hantera datum och tider smidigt.
-⚙️ Backend med Express.js: Snabb och effektiv serverlogik.
-🛢️ MySQL-databas: För säker lagring av data.
-🔐 Säkerhet: Hantering av känsliga uppgifter med miljövariabler (dotenv).
+
+## 🗓️ Bokningshantering: Enkel och effektiv bokning.
+
+## 💳 Stripe-integration för betalning: Säker betalning med kreditkort.
+
+## 🗺️ Google Maps API: Förbättrad användarupplevelse med platstjänster.
+
+## 📅 Kalenderfunktionalitet: Hantera datum och tider smidigt.
+
+## ⚙️ Backend med Express.js: Snabb och effektiv serverlogik.
+
+## 🛢️ MySQL-databas: För säker lagring av data.
+
+## 🔐 Säkerhet: Hantering av känsliga uppgifter med miljövariabler (dotenv).
 
 ## bibliotek som används:
 
@@ -62,8 +69,6 @@ npm start
 öppna ny (en till) terminal för backend och skriv
 
 node server.js
-
-projektet är gjort med version 10.1.0 av node (lite äldre variant)
 
 Förutsättningar
 Node.js: 18.18.0 (inte testat med senaste)

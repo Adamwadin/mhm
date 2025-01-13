@@ -3,7 +3,13 @@ import styles from "./Checkout.module.css";
 
 const mandatoryCleaningFee = 850;
 
-const Checkout = ({ cartItems, totalAmount, onClose, onOpenCheckoutForm }) => {
+const Checkout = ({
+  cartItems,
+  totalAmount,
+  onClose,
+  onOpenCheckoutForm,
+  People,
+}) => {
   return (
     <div className={styles.modalBackdrop} onClick={onClose}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>

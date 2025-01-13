@@ -2,8 +2,8 @@ const express = require("express");
 const mysql = require("mysql2");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+require("dotenv").config();
 const stripe = require("stripe")(process.env.REACT_APP_STRIPE_SECRET_KEY);
-
 const app = express();
 const PORT = 5000;
 
@@ -25,6 +25,26 @@ db.connect((err) => {
   console.log("Connected to the MySQL database.");
 });
 
+const createTableIfNotExist = `
+CREATE TABLE IF NOT EXISTS bookings (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  amount DECIMAL(10, 2) NOT NULL,
+  booked_by VARCHAR(255) NOT NULL,
+  start_time DATETIME NOT NULL,
+  end_time DATETIME NOT NULL,
+  color VARCHAR(7) DEFAULT '#8d6cb3'
+)
+`;
+
+db.query(createTableIfNotExist, (err, results) => {
+  if (err) {
+    console.error("Error creating table:", err);
+    return;
+  }
+  console.log("Bookings table is ready.");
+});
+
+// endpoint för att hämta alla bokningar
 app.get("/bookings", (req, res) => {
   const query = "SELECT * FROM bookings";
   db.query(query, (err, results) => {
@@ -36,6 +56,8 @@ app.get("/bookings", (req, res) => {
     res.json(results);
   });
 });
+
+// POST endpoint för att lägga till en bokning
 
 app.post("/bookings", (req, res) => {
   const { amount, booked_by, start_time, end_time, color } = req.body;
@@ -55,6 +77,8 @@ app.post("/bookings", (req, res) => {
   );
 });
 
+// DELETE endpoint för att ta bort en bokning
+
 app.delete("/bookings/:id", (req, res) => {
   const query = "DELETE FROM bookings WHERE id = ?";
   db.query(query, [req.params.id], (err, results) => {
@@ -67,6 +91,8 @@ app.delete("/bookings/:id", (req, res) => {
   });
 });
 
+// endpoint för att skapa en betalningsintention
+
 app.post("/create-payment-intent", async (req, res) => {
   const { amount, customerEmail, customerName, customerAddress, items } =
     req.body;
@@ -74,7 +100,7 @@ app.post("/create-payment-intent", async (req, res) => {
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
-      currency: "usd",
+      currency: "usd", // Omvandlat till Sek
       receipt_email: customerEmail,
       shipping: {
         name: customerName,
@@ -88,6 +114,8 @@ app.post("/create-payment-intent", async (req, res) => {
     res.status(500).send("Error creating payment intent.");
   }
 });
+
+// endpoint för att bekräfta en bokning
 app.post("/confirm-booking", (req, res) => {
   const { amount, booked_by, start_time, end_time, color } = req.body;
 

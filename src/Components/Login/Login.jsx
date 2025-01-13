@@ -150,6 +150,8 @@ const Login = () => {
                         <input
                           type="password"
                           placeholder=""
+                          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                          title="Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one number, and one special character."
                           className={styles.input}
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
@@ -189,7 +191,7 @@ const Login = () => {
       ) : (
         <div>
           {isLoading ? (
-            <Spinner />
+            <Spinner /> // funkar inte (utkommenterad)
           ) : (
             <div>
               <button onClick={handleLogout} className={styles.button}>

@@ -13,7 +13,7 @@ const MobileCart = () => {
   const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
   const [isCheckoutFormModalOpen, setIsCheckoutFormModalOpen] = useState(false);
   const [cartItems, setCartItems] = useState(cart);
-  const mandatoryCleaningFee = 85;
+  const mandatoryCleaningFee = 850;
   const [totalAmount, setTotalAmount] = useState(
     cart.reduce((total, item) => {
       const startDate = new Date(item.start);
@@ -74,7 +74,7 @@ const MobileCart = () => {
                         <strong>Guest:</strong> {item.booked_by}
                       </span>
                       <span>
-                        <strong>Cleaning fee:</strong> {mandatoryCleaningFee}$
+                        <strong>Cleaning fee:</strong> {mandatoryCleaningFee} Kr
                       </span>
                       <span>
                         <strong>Dates:</strong> {startDate.toLocaleDateString()}{" "}
@@ -93,8 +93,9 @@ const MobileCart = () => {
             </ul>
           </div>
         )}
-        <h4 className={styles.totalAmount}>Total: ${totalAmount.toFixed(2)}</h4>
-
+        <h4 className={styles.totalAmount}>
+          Total: Kr {totalAmount.toFixed(2)}
+        </h4>
         {cart.length === 0 ? (
           <button className={styles.checkoutButton} disabled>
             Add a booking to proceed

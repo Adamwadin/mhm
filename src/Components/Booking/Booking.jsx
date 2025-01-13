@@ -32,6 +32,7 @@ const BookableCalendar = () => {
   const [loading, setLoading] = useState(true);
   const { cart, addToCart, clearCart } = useCart();
   const [isMobile, setIsMobile] = useState(false);
+  const [howToBookModal, setHowToBookModal] = useState(false);
 
   console.log(roles);
 
@@ -76,7 +77,7 @@ const BookableCalendar = () => {
 
   // priser baserade på datum, hårdkodade för enkelhetens skull
   const seasonalPrices = [
-    { start: "2025-01-01", end: "2025-05-01", price: 785, color: "#000000" },
+    { start: "2024-12-01", end: "2025-05-01", price: 785, color: "#000000" },
     { start: "2025-11-01", end: "2025-12-31", price: 785, color: "#000000" },
     { start: "2025-05-01", end: "2025-05-31", price: 928, color: "#000000" },
     { start: "2025-10-01", end: "2025-10-31", price: 928, color: "#000000" },
@@ -130,7 +131,7 @@ const BookableCalendar = () => {
     const amount = prompt("Enter amount of people staying:");
     const booked_by = prompt("Enter your name or email:");
     if (amount && booked_by) {
-      const randomColor = `#f5dc38`;
+      const Color = `#f5dc38`;
       const seasonalPrice = getSeasonalPrice(start);
       const price = seasonalPrice ? seasonalPrice.price : 0;
       // Skapa ny bokning från info frpm användaren
@@ -139,7 +140,7 @@ const BookableCalendar = () => {
         booked_by,
         start_time: new Date(start).toLocaleString(),
         end_time: new Date(end).toLocaleString(),
-        color: randomColor,
+        color: Color,
         price,
       };
 
@@ -152,23 +153,10 @@ const BookableCalendar = () => {
   const handleDeleteBooking = (id) => {
     axios
       .delete(`http://localhost:5000/bookings/${id}`)
-      .then(() =>
-        setBookings((prev) => prev.filter((booking) => booking.id !== id))
-      )
+      .then(() => {
+        setBookings((prev) => prev.filter((booking) => booking.id !== id));
+      })
       .catch((error) => console.error("Error deleting booking:", error));
-  };
-
-  const bookingStyleGetter = (booking) => {
-    const seasonalPrice = getSeasonalPrice(booking.start);
-    return {
-      className: styles.booking,
-      style: {
-        backgroundColor: seasonalPrice ? seasonalPrice.color : "#8d6cb3",
-      },
-      title: `Price: ${
-        seasonalPrice ? seasonalPrice.price : "No seasonal price"
-      }`,
-    };
   };
 
   return (
@@ -178,6 +166,30 @@ const BookableCalendar = () => {
         <div className={styles.bookingAndCartWrapper}>
           <div className={styles.calendarContainer}>
             <h2 className={styles.calendarHeader}>Apartment Bookings</h2>
+            <div className={styles.howToBook}>
+              <button onClick={() => setHowToBookModal(true)}>
+                How to book
+              </button>
+              {howToBookModal && (
+                <div className={styles.modal}>
+                  <div className={styles.modalContent}>
+                    <span
+                      className={styles.closeModal}
+                      onClick={() => setHowToBookModal(false)}
+                    >
+                      &times;
+                    </span>
+                    <h3>How to book</h3>
+                    <p>
+                      To book a date, simply click on the desired start date and
+                      drag to the end date. A prompt will appear where you can
+                      enter the amount of people staying and your name or email.
+                      Click "OK" to confirm your booking.
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
             {loading ? (
               <p>Loading...</p>
             ) : (
@@ -198,7 +210,6 @@ const BookableCalendar = () => {
                     }
                   }
                 }}
-                eventPropGetter={bookingStyleGetter}
                 className={styles.calendar}
                 view="month"
                 dayPropGetter={(date) => {

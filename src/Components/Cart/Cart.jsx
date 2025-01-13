@@ -8,7 +8,7 @@ import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const Cart = () => {
+const Cart = ({ amount }) => {
   // Hämtar kundvagn och funktioner från CartContext
   const { cart, removeFromCart } = useCart();
 
@@ -107,6 +107,7 @@ const Cart = () => {
 
       {isCheckoutModalOpen && (
         <Checkout
+          People={amount}
           cartItems={cartItems}
           totalAmount={totalAmount}
           onClose={handleCloseCheckoutModal}
@@ -117,6 +118,7 @@ const Cart = () => {
       {isCheckoutFormModalOpen && (
         <Elements stripe={stripePromise}>
           <CheckoutForm
+            People={amount}
             totalAmount={totalAmount}
             onClose={handleCloseCheckoutFormModal}
             orderItems={cartItems}
