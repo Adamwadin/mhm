@@ -8,7 +8,7 @@ import {
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  apiKey: "AIzaSyCkaCNzZhFb3SCQm0bXBMk6MTPw7fo89rg",
   authDomain: "mhm-examen.firebaseapp.com",
   projectId: "mhm-examen",
   storageBucket: "mhm-examen.firebasestorage.app",
