@@ -71,9 +71,7 @@ const BookableCalendar = () => {
       });
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+ 
 
   // priser baserade på datum, hårdkodade för enkelhetens skull
   const seasonalPrices = [
@@ -162,7 +160,7 @@ const BookableCalendar = () => {
   return (
     <div className={styles.container}>
       <section id="booking"></section>
-      {isAuthenticated ? (
+      
         <div className={styles.bookingAndCartWrapper}>
           <div className={styles.calendarContainer}>
             <h2 className={styles.calendarHeader}>Apartment Bookings</h2>
@@ -190,9 +188,7 @@ const BookableCalendar = () => {
                 </div>
               )}
             </div>
-            {loading ? (
-              <p>Loading...</p>
-            ) : (
+           
               <Calendar
                 localizer={localizer}
                 events={bookings}
@@ -220,7 +216,7 @@ const BookableCalendar = () => {
                   );
                 }}
               />
-            )}
+           
           </div>
           <div
             className={`${styles.cartContainer} ${
@@ -233,11 +229,7 @@ const BookableCalendar = () => {
             <MobileCart />
           </div>
         </div>
-      ) : (
-        <div className={styles.loginPrompt}>
-          <h3>Please log in to book a date.</h3>
-        </div>
-      )}
+     
     </div>
   );
 };
